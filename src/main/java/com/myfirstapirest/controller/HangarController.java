@@ -39,20 +39,22 @@ class HangarController {
     }
 
     @GetMapping("/hangars/{id}")
-    ResponseEntity<HangarResponse> loadHangarById(@PathVariable("id") long id,
+    ResponseEntity<HangarResponse> loadHangarById(@PathVariable(value = "id") long id,
                                                   @RequestParam(required = false, defaultValue = "0") int min,
                                                   @RequestParam(required = false, defaultValue = "0") int max) {
 
         Hangar hangar = hangarService.getHangarById(id);
         List <Product> hangarProducts = hangar.getProducts();
 
-        max = (max == 0) ?
-                hangarProducts.size()
-                : max;
-        
-        hangar.setProducts(hangarProducts.subList(min, Math.min(hangarProducts.size(), max)));
+        max = (max == 0) ? hangarProducts.size(): max;
 
-        HangarResponse hangarResponse = (new HangarResponseBuilder(hangar)).getHangarResponse();
+        List<Product> filteredProducts = hangarProducts
+                .subList(min, Math.min(hangarProducts.size(), max));
+
+        hangar.setProducts(filteredProducts);
+
+        HangarResponse hangarResponse = (new HangarResponseBuilder(hangar))
+                .getHangarResponse();
 
         return new ResponseEntity<HangarResponse>(
                 hangarResponse,
