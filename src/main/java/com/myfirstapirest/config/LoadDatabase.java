@@ -24,10 +24,18 @@ class LoadDatabase
             hangar1.getProducts().add(new Product("Cocaine", "12.50$"));
             hangar1.getProducts().add(new Product("Methaqualone", "20.30$"));
             hangar1.getProducts().add(new Product("Rohypnol", "50.99$"));
+            hangar1.getProducts().add(new Product("Ketamine Hydrochloride", "32.99$"));
+            hangar1.getProducts().add(new Product("Amyl nitrate", "5.98$"));
+            hangar1.getProducts().add(new Product("Mephedrone", "10.59$"));
+            hangar1.getProducts().add(new Product("Lysergic acid diethylamide", "31.67$"));
+            hangar1.getProducts().add(new Product("Shepherdess’s Herb", "9.99$"));
+            hangar1.getProducts().add(new Product("Cannabis", "12.99$"));
 
+            /*
             hangar1.setState(false);
             hangar2.setState(false);
             hangar3.setState(false);
+            */
 
             hangarRepository.save(hangar1);
             hangarRepository.save(hangar2);

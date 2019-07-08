@@ -17,11 +17,11 @@ class HangarServiceImpl implements HangarService {
 
     private boolean isEmpty(List<Hangar> hangars) {
 
-        int numberOfHangarsWithFalseState = (int) hangars.stream()
+        int numberOfHangarsWithTrueState = (int) hangars.stream()
                 .filter(Hangar::isState)
                 .count();
 
-        return (hangars.isEmpty() || numberOfHangarsWithFalseState >= 0);
+        return (hangars.isEmpty() || (numberOfHangarsWithTrueState == 0));
 
     }
 

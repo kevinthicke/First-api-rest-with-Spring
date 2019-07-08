@@ -9,7 +9,7 @@ import java.util.List;
 
 public class HangarResponseBuilder
 {
-    HangarResponse hangarResponse;
+    private HangarResponse hangarResponse;
 
     public HangarResponseBuilder(Hangar hangar) {
 
