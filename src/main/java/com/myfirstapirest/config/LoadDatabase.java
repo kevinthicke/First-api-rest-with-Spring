@@ -17,9 +17,9 @@ class LoadDatabase
                            HangarRepository hangarRepository) {
         return args -> {
 
-            Hangar hangar1 = new Hangar("Hangar Los Santos", "Located at international airport in the city of Los Santos, San Andreas, located to the west of the port and to the south of La Puerta in GTA V. The LSIA district is also the location of the airport's nearby warehouses, restaurants, and hotels.");
-            Hangar hangar2 = new Hangar("Hangar Las Venturas", "Located at Las Venturas Airport is an international airport located in Las Venturas, right in the city centre, west of the Strip, featured in Grand Theft Auto: San Andreas.");
-            Hangar hangar3 = new Hangar("Hangar San Fierro", "Located at Easter Bay International Airport an international airport serving San Fierro, San Andreas in Grand Theft Auto: San Andreas, and is the largest airport in the State of San Andreas.");
+            Hangar hangar1 = new Hangar("Hangar Los Santos");
+            Hangar hangar2 = new Hangar("Hangar Las Venturas");
+            Hangar hangar3 = new Hangar("Hangar San Fierro");
 
             hangar1.getProducts().add(new Product("Cocaine", "12.50$"));
             hangar1.getProducts().add(new Product("Methaqualone", "20.30$"));

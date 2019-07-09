@@ -7,7 +7,6 @@ public class HangarResponse {
 
     private long id;
     private String name;
-    private String description;
     private List<ProductResponse> products = new ArrayList<ProductResponse>();
 
     public HangarResponse() {}
@@ -17,22 +16,8 @@ public class HangarResponse {
         this.name = name;
     }
 
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public HangarResponse(long id, String name, String description) {
+    public HangarResponse(long id, String name, List<ProductResponse> products) {
         this(id, name);
-        this.description = description;
-    }
-
-    public HangarResponse(long id, String name, String description, List<ProductResponse> products) {
-        this(id, name, description);
         this.products = products;
     }
 

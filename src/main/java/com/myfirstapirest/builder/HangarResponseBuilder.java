@@ -16,7 +16,6 @@ public class HangarResponseBuilder
         this.hangarResponse = new HangarResponse();
         this.hangarResponse.setId(hangar.getId());
         this.hangarResponse.setName(hangar.getName());
-        this.hangarResponse.setDescription(hangar.getDescription());
 
         List<ProductResponse> productsResponse = new ArrayList<ProductResponse>();
 

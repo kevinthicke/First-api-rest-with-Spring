@@ -14,15 +14,8 @@ public class Product {
 
     private @Column(name = "STATE") boolean state;
 
-    /*
-    private @ManyToOne
-    @JoinColumn(name = "hangar_id", foreignKey = @ForeignKey(name = "HANGAR_ID_FK"))
-    Hangar hangar;
-    */
-
     public Product() {
         this.state = true;
-    //     this.hangar = new Hangar("Default Hangar");
     }
 
     public Product(String name, String price) {
@@ -59,13 +52,5 @@ public class Product {
     public void setPrice(String price) {
         this.price = price;
     }
-    /*
-    public Hangar getHangar() {
-        return hangar;
-    }
 
-    public void setHangar(Hangar hangar) {
-        this.hangar = hangar;
-    }
-    */
 }

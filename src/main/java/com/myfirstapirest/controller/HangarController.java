@@ -69,39 +69,45 @@ public class HangarController {
     }
 
     @GetMapping("/hangars/search")
-    ResponseEntity<HangarResponse> loadHangarByName(@RequestParam String name) {
+    ResponseEntity<?> loadHangarByName(@RequestParam String name) {
 
         Hangar hangar = this.hangarService.getHangarByName(name);
-        HangarResponse hangarResponse = (new HangarResponseBuilder(hangar)).getHangarResponse();
 
-        return new ResponseEntity<HangarResponse>(
-                hangarResponse,
+        Resource hangarResponseResource = hangarResponseResourceAssembler
+                .toResource(new HangarResponseBuilder(hangar).getHangarResponse());
+
+        return new ResponseEntity<Resource>(
+                hangarResponseResource,
                 HttpStatus.OK);
     }
 
     @PostMapping("/hangars")
-    ResponseEntity<HangarResponse> saveHangar(@Valid @RequestBody HangarRequest hangarRequest) {
+    ResponseEntity<Resource> saveHangar(@Valid @RequestBody HangarRequest hangarRequest) {
 
         String hangarRequestName = hangarRequest.getName();
-
         Hangar hangar = this.hangarService.insertHangar(new Hangar(hangarRequestName));
-        HangarResponse hangarResponse = (new HangarResponseBuilder(hangar)).getHangarResponse();
 
-        return new ResponseEntity<HangarResponse>(
-                hangarResponse,
+        Resource hangarResponseResource = hangarResponseResourceAssembler
+                .toResource(new HangarResponseBuilder(hangar).getHangarResponse());
+
+        return new ResponseEntity<Resource>(
+                hangarResponseResource,
                 HttpStatus.CREATED);
 
     }
 
     @PostMapping("/hangars/{id}")
-    ResponseEntity<HangarResponse> saveProductInHangarById(@PathVariable("id") long id,
+    ResponseEntity<Resource> saveProductInHangarById(@PathVariable("id") long id,
                                                            @RequestBody Product product) {
 
         Hangar hangar = this.hangarService.insertProductInHangarById(id, product);
-        HangarResponse hangarResponse = new HangarResponseBuilder(hangar).getHangarResponse();
+        
+        Resource hangarResponseResource = hangarResponseResourceAssembler
+                .toResource(new HangarResponseBuilder(hangar).getHangarResponse());
 
-        return new ResponseEntity<HangarResponse>(
-                hangarResponse,
+
+        return new ResponseEntity<Resource>(
+                hangarResponseResource,
                 HttpStatus.CREATED
         );
     }

@@ -11,7 +11,6 @@ public class Hangar {
     private @Id @GeneratedValue(strategy = GenerationType.AUTO) long id;
     private @Column(name = "NAME") String name;
     private @Column(name = "STATE") boolean state;
-    private @Column(name = "DESCRIPTION") String description;
 
     private @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     List<Product> products = new ArrayList<Product>();
@@ -23,11 +22,6 @@ public class Hangar {
     public Hangar(String name) {
         this();
         this.name = name;
-    }
-
-    public Hangar(String name, String description) {
-        this(name);
-        this.description = description;
     }
 
     public List<Product> getProducts() {
@@ -56,14 +50,6 @@ public class Hangar {
 
     public void setState(boolean state) {
         this.state = state;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 
 }
