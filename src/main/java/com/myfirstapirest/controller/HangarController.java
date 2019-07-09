@@ -39,21 +39,18 @@ public class HangarController {
 
         List<HangarResponse> hangarsResponse = new ArrayList<HangarResponse>();
 
-        this.hangarService
+        List<Resource> listHangarResponseResource = this.hangarService
                 .getHangars()
-                .forEach(hangar -> {
-                    hangarsResponse.add((new HangarResponseBuilder(hangar)).getHangarResponse());
-                });
-
-        List<Resource<HangarResponse>> resourceListHangarResponse = hangarsResponse
                 .stream()
+                .map(hangar -> new HangarResponseBuilder(hangar).getHangarResponse())
                 .map(hangarResponseResourceAssembler::toResource)
-                //.map(hangarResponse -> hangarResponseResourceAssembler.toResource(hangarResponse))
                 .collect(Collectors.toList());
 
-        return ResponseEntity
-                .ok()
-                .body(resourceListHangarResponse);
+        return new ResponseEntity< List<Resource> >(
+                listHangarResponseResource,
+                HttpStatus.OK
+        );
+
     }
 
     @GetMapping("/hangars/{id}")
@@ -65,9 +62,10 @@ public class HangarController {
         Resource hangarResponseResource = hangarResponseResourceAssembler
                 .toResource(new HangarResponseBuilder(hangar).getHangarResponse());
 
-        return ResponseEntity
-                .ok()
-                .body(hangarResponseResource);
+        return new ResponseEntity<Resource> (
+                hangarResponseResource,
+                HttpStatus.OK
+        );
     }
 
     @GetMapping("/hangars/search")
